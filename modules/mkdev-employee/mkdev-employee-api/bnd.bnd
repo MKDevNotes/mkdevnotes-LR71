@@ -1,0 +1,10 @@
+Bundle-Name: mkdev-employee-api
+Bundle-SymbolicName: org.mkdev.employee.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	org.mkdev.employee.exception,\
+	org.mkdev.employee.model,\
+	org.mkdev.employee.service,\
+	org.mkdev.employee.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../mkdev-employee-service/service.xml

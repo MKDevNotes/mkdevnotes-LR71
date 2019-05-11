@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="org.mkdev.employee.model.EmployeeDetail">
+		<field name="uuid" type="String" />
+		<field name="empId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="firstName" type="String" />
+		<field name="lastName" type="String" />
+		<field name="email" type="String" />
+		<field name="age" type="int" />
+		<field name="gender" type="int" />
+		<field name="address" type="String" />
+		<field name="mobile" type="String" />
+	</model>
+</model-hints>

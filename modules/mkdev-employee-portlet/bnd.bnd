@@ -1,0 +1,4 @@
+Bundle-Name: mkdev-employee-portlet
+Bundle-SymbolicName: mkdev.employee.mvc
+Bundle-Version: 1.0.0
+Export-Package: mkdev.employee.mvc.constants
