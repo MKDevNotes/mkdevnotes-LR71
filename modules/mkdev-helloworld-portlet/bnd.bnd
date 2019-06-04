@@ -1,0 +1,4 @@
+Bundle-Name: mkdev-helloworld-portlet
+Bundle-SymbolicName: org.mkdev.sample
+Bundle-Version: 1.0.0
+Export-Package: org.mkdev.sample.constants
