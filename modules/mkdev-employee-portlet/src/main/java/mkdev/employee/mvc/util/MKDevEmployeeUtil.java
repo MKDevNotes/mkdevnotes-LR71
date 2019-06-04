@@ -2,10 +2,11 @@ package mkdev.employee.mvc.util;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Date;
@@ -17,6 +18,10 @@ import org.mkdev.employee.service.EmployeeDetailLocalServiceUtil;
 
 import mkdev.employee.mvc.constants.MKDevEmployeeControllerPortletKeys;
 
+/**
+ * @author Muthukumar Thangavinayagam.
+ *
+ */
 public class MKDevEmployeeUtil {
 
 	public static EmployeeDetail employeeFormRequest(ActionRequest actionRequest) throws PortalException {
@@ -35,7 +40,7 @@ public class MKDevEmployeeUtil {
 				employeeDtl.setGroupId(
 						GroupLocalServiceUtil.getCompanyGroup(PortalUtil.getDefaultCompanyId()).getGroupId());
 			} catch (PortalException e) {
-				e.printStackTrace();
+				_log.error("#################  Error occured on employeeFormRequest method #########################");
 			}
 			employeeDtl.setUserId(PortalUtil.getUserId(actionRequest));
 			employeeDtl.setCreateDate(new Date());
@@ -52,4 +57,6 @@ public class MKDevEmployeeUtil {
 
 		return employeeDtl;
 	}
+	
+	private static Log _log = LogFactoryUtil.getLog(MKDevEmployeeUtil.class);
 }

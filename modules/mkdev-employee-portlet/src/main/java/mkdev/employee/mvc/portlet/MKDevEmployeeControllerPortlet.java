@@ -27,7 +27,8 @@ import mkdev.employee.mvc.constants.MKDevEmployeeControllerPortletKeys;
 import mkdev.employee.mvc.util.MKDevEmployeeUtil;
 
 /**
- * @author Muthukumar
+ * @author Muthukumar Thangavinayagam.
+ * 
  */
 @Component(immediate = true, property = { "com.liferay.portlet.display-category=MKDevNotes",
 		"com.liferay.portlet.instanceable=true", "javax.portlet.init-param.template-path=/",
@@ -41,9 +42,8 @@ public class MKDevEmployeeControllerPortlet extends MVCPortlet {
 			throws IOException, PortletException {
 		// TODO Auto-generated method stub
 	 	String pageName = (String) renderRequest.getAttribute("VIEW_PAGE")== null ? (String) renderRequest.getParameter("VIEW_PAGE") : (String) renderRequest.getAttribute("VIEW_PAGE") ;
-		System.out.println("Page Name " + pageName);
 
-		if (Validator.isNotNull(pageName)) {
+	 	if (Validator.isNotNull(pageName)) {
 			if (pageName.equalsIgnoreCase("viewEmployeeList")) {
 				include("/viewEmployeeList.jsp", renderRequest, renderResponse);
 			} else if (pageName.equalsIgnoreCase("editEmployee")) {
@@ -59,37 +59,25 @@ public class MKDevEmployeeControllerPortlet extends MVCPortlet {
 	public void addEmployeeDetail(ActionRequest actionRequest, ActionResponse actionResponse) throws SystemException, PortalException {
 		System.out.println("Hello AddEmployeeDetail");
 		EmployeeDetail employeeDetail = MKDevEmployeeUtil.employeeFormRequest(actionRequest);
-
-		System.out.println("Firstr Name " + employeeDetail.getFirstName());
-		System.out.println("Last Name " + employeeDetail.getLastName());
-		System.out.println("Age " + employeeDetail.getAge());
-		System.out.println("Email " + employeeDetail.getEmail());
-		System.out.println("Address " + employeeDetail.getFirstName());
-
 		EmployeeDetailLocalServiceUtil.addEmployeeDetail(employeeDetail);
-		SessionMessages.add(actionRequest, "added-book");
-		_log.info("#################Added Book Successfully#########################");
+		SessionMessages.add(actionRequest, "added-employee");
+		_log.info("#################Added Employee Successfully#########################");
 	}
 
 	@ProcessAction(name = "viewEditEmployee")
 	public void editEmployeeDetail(ActionRequest actionRequest, ActionResponse actionResponse)
 			throws SystemException, IOException, PortletException, PortalException {
-
 		Long empId = ParamUtil.getLong(actionRequest, MKDevEmployeeControllerPortletKeys.EMPLOYEE_ID);
-
 		EmployeeDetail employeeDetail = EmployeeDetailLocalServiceUtil.getEmployeeDetail(empId);
-		
 		actionRequest.setAttribute("employeeDtl", employeeDetail);
-		
 		actionResponse.setRenderParameter("VIEW_PAGE", "editEmployee");
-
+		_log.info("#################ViewEdit Employee Called#########################");
 	}
 	
 	
 	@ProcessAction(name = "updateEmployee")
 	public void updateEmployeeDetail(ActionRequest actionRequest, ActionResponse actionResponse)
 			throws SystemException, IOException, PortletException, PortalException {
-
 		EmployeeDetail employeeDetail = MKDevEmployeeUtil.employeeFormRequest(actionRequest);
 		EmployeeDetailLocalServiceUtil.updateEmployeeDetail(employeeDetail);
 		SessionMessages.add(actionRequest, "updated-employee");
@@ -101,13 +89,12 @@ public class MKDevEmployeeControllerPortlet extends MVCPortlet {
 			throws SystemException, IOException, PortalException {
 		
 		Long empId = ParamUtil.getLong(actionRequest, MKDevEmployeeControllerPortletKeys.EMPLOYEE_ID);
-		
 		if(Validator.isNotNull(empId) && empId > 0) {
 			EmployeeDetailLocalServiceUtil.deleteEmployeeDetail(empId);
 		} 
-	
-		System.out.println("-------------deleteEmployee ------------------------>>>>>>");
+		_log.info("#################Employee deleted Successfully#########################");
 	}
+	
 	private Log _log = LogFactoryUtil.getLog(MKDevEmployeeControllerPortlet.class);
 
 }

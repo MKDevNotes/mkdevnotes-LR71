@@ -1,7 +1,7 @@
 package mkdev.employee.mvc.constants;
 
 /**
- * @author Muthukumar
+ * @author Muthukumar Thangavinayagam.
  */
 public class MKDevEmployeeControllerPortletKeys {
 
